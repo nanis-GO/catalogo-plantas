@@ -1,0 +1,269 @@
+/* src/style.css */
+
+/* --- Variables Globales y Reset --- */
+:root {
+  font-family: 'Poppins', sans-serif; /* Fuente base */
+  background-color: #0A0E0C; /* Fondo principal muy oscuro de la imagen */
+  color: #EFEFEF; /* Texto claro */
+  
+  /* Paleta de colores inspirada en la imagen */
+  --bg-color: #0A0E0C;
+  --card-bg: #161B18; /* Ligeramente más claro para las tarjetas */
+  --card-border: #1D2220;
+  --accent-mint: #2D6A4F; /* Verde menta oscuro de la imagen para acentos */
+  --accent-orange: #E85D04; /* Naranja para advertencias y botones */
+  --text-title: #FFFFFF;
+  --text-body: #BDBDBD;
+  
+  --serif-font: 'Playfair Display', serif; /* Títulos elegantes */
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  overflow-x: hidden;
+}
+
+#app {
+  max-width: 1200px;
+  width: 100%;
+  padding: 40px 20px;
+}
+
+h1, h2 {
+  font-family: var(--serif-font);
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.main-title {
+  text-align: center;
+  font-size: 3rem;
+  font-style: italic; /* Como en la imagen */
+  color: var(--text-title);
+  position: relative;
+  display: inline-block;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-bottom: 60px;
+}
+
+/* Decoración para el título 'Our Top Selling' */
+.main-title::before,
+.main-title::after {
+    content: '[';
+    font-size: 1.5rem;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #4B6358;
+}
+.main-title::before { left: -30px; }
+.main-title::after { content: ']'; right: -30px; }
+
+
+/* --- Sección de Controles (Header) --- */
+.controls-section {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  margin-bottom: 60px;
+  padding: 30px;
+  background: radial-gradient(circle at center, #111A15 0%, #0A0E0C 100%); /* Efecto sutil de fondo */
+  border-radius: 20px;
+}
+
+/* Filtro */
+.filter-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background-color: var(--card-bg);
+    padding: 15px 25px;
+    border-radius: 50px; /* Bordes muy redondeados */
+    border: 1px solid var(--card-border);
+}
+
+.filter-container label {
+    font-weight: 600;
+    color: var(--text-title);
+}
+
+.filter-container select {
+    background-color: #0A0E0C;
+    color: #FFFFFF;
+    border: 1px solid #333;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    appearance: none; /* Quitar estilo por defecto */
+    outline: none;
+}
+.filter-container select:focus { border-color: var(--accent-mint); }
+
+
+/* Estilo base para tarjetas oscuras curvas */
+.card-dark {
+    background-color: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 40px; /* Curva pronunciada de la imagen */
+    padding: 30px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5); /* Sombra suave para profundidad */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Resumen */
+.summary-container {
+    padding: 25px;
+}
+.summary-container h2 { text-align: center; }
+.summary-details {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    text-align: center;
+}
+.summary-details p { color: var(--text-body); font-size: 1.1rem; }
+.summary-details span { color: #FFFFFF; font-weight: 600; }
+.summary-details span#resumenTotalUnidades { color: var(--accent-orange); } /* Acento en unidades */
+
+
+/* --- Sección de Catálogo (Grid) --- */
+.catalog-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 columnas como en la imagen */
+    gap: 40px;
+    padding: 0 10px;
+}
+
+/* Tarjeta de Planta Individual */
+.plant-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    padding-top: 100px; /* Espacio para la imagen que 'sobresale' */
+}
+
+/* Imagen circular curvada que sobresale */
+.plant-image-container {
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    top: -60px;
+    z-index: 10;
+}
+.plant-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%; /* Imagen circular */
+    border: 4px solid var(--card-bg);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.7);
+}
+
+.card-content {
+    width: 100%;
+    text-align: center;
+    padding-top: 60px; /* Espacio bajo la imagen */
+}
+
+/* Efecto hover en la tarjeta */
+.plant-card .card-dark:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 60px rgba(29, 34, 32, 0.4);
+    border-color: #333;
+}
+
+.plant-category {
+    font-size: 0.9rem;
+    color: var(--accent-mint);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+}
+
+.plant-name {
+    font-family: var(--serif-font);
+    font-size: 1.8rem;
+    color: var(--text-title);
+    margin-bottom: 15px;
+}
+
+.plant-price {
+    font-size: 1.5rem;
+    color: #FFFFFF;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+.plant-stock {
+    font-size: 0.9rem;
+    color: var(--text-body);
+    margin-bottom: 25px;
+}
+
+/* [Paso 21] Un botón por producto 'Vender' */
+.card-action-container {
+    display: flex;
+    justify-content: center;
+}
+.btn-vender {
+    background-color: var(--accent-mint);
+    color: #FFFFFF;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 50px;
+    font-family: var(--serif-font);
+    font-style: italic;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    box-shadow: 0 5px 15px rgba(45, 106, 79, 0.3);
+}
+.btn-vender:hover { background-color: #3A8968; }
+
+/* Estilo para botón deshabilitado (sin stock) */
+.btn-vender:disabled {
+    background-color: #333;
+    color: #666;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+/* [Paso 54] Mensaje de validación */
+.validation-message {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 15px 30px;
+    border-radius: 30px;
+    color: #FFFFFF;
+    font-weight: 600;
+    z-index: 100;
+    opacity: 1;
+    transition: opacity 0.5s ease-out;
+}
+.validation-message.success { background-color: var(--accent-mint); box-shadow: 0 5px 20px rgba(45,106,79,0.5); }
+.validation-message.error { background-color: var(--accent-orange); box-shadow: 0 5px 20px rgba(232,93,4,0.5); }
+.hidden { opacity: 0; pointer-events: none; }
+
+
+/* Responsive para el grid */
+@media (max-width: 900px) {
+    .catalog-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+    .catalog-grid { grid-template-columns: 1fr; }
+    .filter-container { flex-direction: column; align-items: stretch; text-align: center; }
+}
